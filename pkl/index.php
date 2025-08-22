@@ -39,6 +39,20 @@
 
 /*
  * ---------------------------------------------------------------
+ * Load Environment Variables
+ * ---------------------------------------------------------------
+ */
+if (!file_exists('.env')) {
+    http_response_code(403);
+    exit('File <strong>.env</strong> not found, this file is required!');
+}
+
+require __DIR__ . '/vendor/autoload.php';  // Load Composer
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/');
+$dotenv->load();
+
+/*
+ * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  * ---------------------------------------------------------------
  *
@@ -54,7 +68,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+define('ENVIRONMENT', isset($_ENV['CI_ENV']) ? $_ENV['CI_ENV'] : 'development');
 
 /*
  * ---------------------------------------------------------------
