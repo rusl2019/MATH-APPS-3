@@ -18,8 +18,8 @@ CREATE TABLE `ci_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `lecturers`;
-CREATE TABLE `lecturers` (
+DROP TABLE IF EXISTS `apps_lecturers`;
+CREATE TABLE `apps_lecturers` (
   `id` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `lecturers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `lecturers` (`id`, `email`, `name`, `rank`, `position`, `created_at`, `updated_at`) VALUES
+INSERT INTO `apps_lecturers` (`id`, `email`, `name`, `rank`, `position`, `created_at`, `updated_at`) VALUES
 ('195305231983031002',	'aguswidodo@ub.ac.id',	'Prof.Dr. Agus Widodo, M.Kes',	'IV/d',	'Guru Besar',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
 ('195905151992031002',	'bamsugan@ub.ac.id',	'Drs. Bambang Sugandi, M.Si',	'III/c',	'Lektor',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
 ('195910311989121001',	'mslk@ub.ac.id',	'Drs. Mohamad Muslikh, M.Si., Ph.D',	'IV/b',	'Lektor Kepala',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
@@ -62,15 +62,15 @@ INSERT INTO `lecturers` (`id`, `email`, `name`, `rank`, `position`, `created_at`
 ('199006202015042004',	'mdwimifta@ub.ac.id',	'Dwi Mifta Mahanani, S.Si.,M.Si',	'III/b',	'Tenaga Pengajar',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
 ('199202052022031006',	'fery.widhiatmoko@ub.ac.id',	'Fery Widhiatmoko, S.Pd., M.Sc',	'III/a',	'Tenaga Pengajar',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09');
 
-DROP TABLE IF EXISTS `modules`;
-CREATE TABLE `modules` (
+DROP TABLE IF EXISTS `apps_modules`;
+CREATE TABLE `apps_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `modules` (`id`, `name`, `description`) VALUES
+INSERT INTO `apps_modules` (`id`, `name`, `description`) VALUES
 (1,	'dashboard',	'Dashboard'),
 (2,	'master_data',	'Master Data'),
 (3,	'pkl_activity',	'Kegiatan PKL'),
@@ -78,8 +78,8 @@ INSERT INTO `modules` (`id`, `name`, `description`) VALUES
 (5,	'pkl_approval',	'Persetujuan PKL'),
 (6,	'pkl_upload',	'Unggah Surat');
 
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE `roles` (
+DROP TABLE IF EXISTS `apps_roles`;
+CREATE TABLE `apps_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -87,15 +87,15 @@ CREATE TABLE `roles` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+INSERT INTO `apps_roles` (`id`, `name`, `description`) VALUES
 (1,	'super admin',	'Administrator with full access'),
 (2,	'student',	'Student with limited access'),
 (3,	'lecturer',	'Lecturer with teaching-related access'),
 (4,	'staff',	'Staff with administrative access'),
 (5,	'head study program',	'Head of study program with limited access');
 
-DROP TABLE IF EXISTS `role_access`;
-CREATE TABLE `role_access` (
+DROP TABLE IF EXISTS `apps_role_access`;
+CREATE TABLE `apps_role_access` (
   `role_id` int(11) NOT NULL,
   `module_id` int(11) NOT NULL,
   `can_create` tinyint(1) DEFAULT 0,
@@ -104,7 +104,7 @@ CREATE TABLE `role_access` (
   `can_delete` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `role_access` (`role_id`, `module_id`, `can_create`, `can_read`, `can_update`, `can_delete`) VALUES
+INSERT INTO `apps_role_access` (`role_id`, `module_id`, `can_create`, `can_read`, `can_update`, `can_delete`) VALUES
 (1,	1,	1,	1,	1,	1),
 (1,	2,	1,	1,	1,	1),
 (1,	3,	1,	1,	1,	1),
@@ -136,8 +136,8 @@ INSERT INTO `role_access` (`role_id`, `module_id`, `can_create`, `can_read`, `ca
 (5,	5,	1,	1,	1,	1),
 (5,	6,	0,	0,	0,	0);
 
-DROP TABLE IF EXISTS `staffs`;
-CREATE TABLE `staffs` (
+DROP TABLE IF EXISTS `apps_staffs`;
+CREATE TABLE `apps_staffs` (
   `id` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -146,13 +146,13 @@ CREATE TABLE `staffs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `staffs` (`id`, `email`, `name`, `created_at`, `updated_at`) VALUES
+INSERT INTO `apps_staffs` (`id`, `email`, `name`, `created_at`, `updated_at`) VALUES
 ('197810232009102002',	'pujiyanti@ub.ac.id',	'PUJIYANTI, A.Md.',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
 ('2008108707071001',	'riski_ovta@ub.ac.id',	'RIESKY OVTA HIDAYAT, A.Md.',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09'),
 ('3508131811970002',	'ruslan@ub.ac.id',	'MUHAMMAD RUSLAN NOVIANTO, S.Si., M.Si.',	'2025-07-16 06:54:09',	'2025-07-16 06:54:09');
 
-DROP TABLE IF EXISTS `students`;
-CREATE TABLE `students` (
+DROP TABLE IF EXISTS `apps_students`;
+CREATE TABLE `apps_students` (
   `id` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `students` (`id`, `email`, `name`, `study_program_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `apps_students` (`id`, `email`, `name`, `study_program_id`, `created_at`, `updated_at`) VALUES
 ('155090400111017',	'adhithya@student.ub.ac.id',	'ADHITHYA TAUFIQURRAHMAN ASSEL',	1,	'2025-08-09 19:27:46',	'2025-08-09 19:27:46'),
 ('155090401111021',	'zidnanayla@student.ub.ac.id',	'Zidna Nayla Hidayati',	1,	'2025-08-09 19:27:46',	'2025-08-09 19:27:46'),
 ('155090401111042',	'azqiamalia@student.ub.ac.id',	'Azqi Amalia Khaerunnisa',	1,	'2025-08-09 19:27:46',	'2025-08-09 19:27:46'),
@@ -750,30 +750,30 @@ INSERT INTO `students` (`id`, `email`, `name`, `study_program_id`, `created_at`,
 ('215091007111042',	'neysasr@student.ub.ac.id',	'NEYSA SALSABILA RAHMAWATI',	3,	'2025-08-09 19:27:46',	'2025-08-09 19:27:46'),
 ('215091007111043',	'azahraaulia@student.ub.ac.id',	'Azahra Aulia Maulidina',	3,	'2025-08-09 19:27:46',	'2025-08-09 19:27:46');
 
-DROP TABLE IF EXISTS `study_programs`;
-CREATE TABLE `study_programs` (
+DROP TABLE IF EXISTS `apps_study_programs`;
+CREATE TABLE `apps_study_programs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `lecturer_id` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lecturer_id` (`lecturer_id`),
-  CONSTRAINT `study_programs_ibfk_1` FOREIGN KEY (`lecturer_id`) REFERENCES `lecturers` (`id`)
+  CONSTRAINT `study_programs_ibfk_1` FOREIGN KEY (`lecturer_id`) REFERENCES `apps_lecturers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `study_programs` (`id`, `name`, `lecturer_id`) VALUES
+INSERT INTO `apps_study_programs` (`id`, `name`, `lecturer_id`) VALUES
 (1,	'Sarjana Matematika',	'198505152009122004'),
 (2,	'Sarjana Statistika',	NULL),
 (3,	'Sarjana Ilmu Aktuaria',	'198411242009122006');
 
-DROP TABLE IF EXISTS `user_roles`;
-CREATE TABLE `user_roles` (
+DROP TABLE IF EXISTS `apps_user_roles`;
+CREATE TABLE `apps_user_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(20) NOT NULL,
   `role_id` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `user_roles` (`id`, `user_id`, `role_id`) VALUES
+INSERT INTO `apps_user_roles` (`id`, `user_id`, `role_id`) VALUES
 (1,	'3508131811970002',	'1'),
 (2,	'3508131811970002',	'4'),
 (3,	'2008108707071001',	'4'),
