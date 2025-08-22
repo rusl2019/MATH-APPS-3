@@ -3,7 +3,7 @@
 source "$(dirname "$0")/lib/define.sh"
 source "$(dirname "$0")/lib/logger.sh"
 
-APP_PATH="apps"
+APP_PATH="pkl"
 
 format_php_code() {
 	log_message "== Formatting PHP code =="
@@ -15,7 +15,7 @@ format_php_code() {
 	fi
 
 	log_message "Checking pretty-php.phar..."
-	if command -v pretty-php.phar >/dev/null; then
+	if command -v pretty-php.phar . >/dev/null; then
 		log_message "Formatting PHP code..."
 		if ! pretty-php.phar; then
 			log_message "Error: Failed to format PHP code"
