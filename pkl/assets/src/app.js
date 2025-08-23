@@ -1,5 +1,10 @@
 import "flowbite";
 
+import jQuery from "jquery";
+import moment from 'moment';
+import DataTable from 'datatables.net-dt';
+import 'datatables.net-responsive-dt';
+
 var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
 var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
@@ -41,4 +46,8 @@ themeToggleBtn.addEventListener("click", function () {
             localStorage.setItem("color-theme", "dark");
         }
     }
+});
+
+new DataTable('#myTable', {
+    responsive: true,
 });

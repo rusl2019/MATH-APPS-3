@@ -5,3 +5,6 @@
 @source "../../node_modules/flowbite";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@import 'datatables.net-dt';
+@import 'datatables.net-responsive-dt';
