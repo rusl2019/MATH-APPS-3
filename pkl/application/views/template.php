@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/dist/bundle.css'); ?>">
 
     <!-- Logika untuk Dark Mode -->
     <script>
@@ -166,8 +166,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </span>
     </footer>
 
-    <script src="<?php echo base_url('assets/js/flowbite.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/dist/bundle.js'); ?>"></script>
 </body>
 
 </html>
