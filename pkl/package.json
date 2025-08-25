@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch:css": "npx @tailwindcss/cli -i ./assets/src/app.css -o ./assets/dist/bundle.css --watch",
+    "watch:css": "npx @tailwindcss/cli -i ./assets/src/css/app.css -o ./assets/dist/bundle.css --watch",
     "watch:js": "npx rollup -c -w",
     "watch": "concurrently \"pnpm watch:css\" \"pnpm watch:js\""
   },

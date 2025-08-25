@@ -2,6 +2,10 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 
+<?php if ($this->session->flashdata('message')) : ?>
+	<div id="toast" data-message="<?php echo $this->session->flashdata('message'); ?>" data-type="<?php echo $this->session->flashdata('type'); ?>"></div>
+<?php endif; ?>
+
 <div class="mt-14">
 	<nav class="flex" aria-label="Breadcrumb">
 		<ol class="inline-flex items-center space-x-2 md:space-x-2 rtl:space-x-reverse">
@@ -31,8 +35,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</li>
 		</ol>
 	</nav>
-
-	<div id="toast" data-message="Data berhasil disimpan!" data-type="success"></div>
 
 	<div class="mt-2 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
 		<div class="flex justify-between items-center mb-4">
