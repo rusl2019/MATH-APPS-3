@@ -15,11 +15,38 @@ class Students extends MY_Controller
         $this->render('students');
     }
 
+    public function create(): void
+    {
+        $this->form_validation->set_rules("id", "id", 'required|unique[apps_students.id]');
+        $this->form_validation->set_rules("email", "email", 'required|unique[apps_students.email]|valid_email');
+        $this->form_validation->set_rules("name", "name", 'required');
+        $this->form_validation->set_rules("study_program_id", "study_program_id", 'required');
+
+        if ($this->form_validation->run()) {
+            $data = [
+                'id' => $this->input->post('id', true),
+                'email' => $this->input->post('email', true),
+                'name' => $this->input->post('name', true),
+                'study_program_id' => $this->input->post('study_program_id', true),
+            ];
+
+            if ($this->Student_model->create($data)) {
+                $this->session->set_flashdata('success', 'Data has been created!');
+            } else {
+                $this->session->set_flashdata('error', 'Data failed to be created!');
+            }
+            redirect('master_data/students');
+        }
+
+        $this->session->set_flashdata('error', validation_errors());
+        redirect('master_data/students');
+    }
+
     public function get_data(): void
     {
-        // if (!$this->input->is_ajax_request()) {
-        //     show_error('Access Denied', 403);
-        // }
+        if (!$this->input->is_ajax_request()) {
+            show_error('Access Denied', 403);
+        }
 
         $data = $this->Student_model->get_data();
 
